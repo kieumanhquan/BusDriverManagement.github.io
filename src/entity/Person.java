@@ -4,25 +4,17 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class Person implements Serializable {
-    private String name;
-    private String address;
-    private String phonenumber;
+    protected String fullName;
+    protected String address;
+    protected String phone;
 
-    public Person() {
+
+    public String getFullName() {
+        return fullName;
     }
 
-    public Person(String name, String address, String phonenumber) {
-        this.name = name;
-        this.address = address;
-        this.phonenumber = phonenumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getAddress() {
@@ -33,29 +25,38 @@ public class Person implements Serializable {
         this.address = address;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public void inputInfo(){
-        System.out.println("Nhập tên: ");
-        this.name = new Scanner(System.in).nextLine();
-        System.out.println("Nhập địa chỉ: ");
+    public void inputInfo() {
+        System.out.print("Nhập tên lái xe: ");
+        this.fullName = new Scanner(System.in).nextLine();
+        System.out.print("Nhập tên địa chỉ: ");
         this.address = new Scanner(System.in).nextLine();
-        System.out.println("Nhập số điên thoại: ");
-        this.phonenumber = new Scanner(System.in).nextLine();
+        intputPhoneNumber();
+    }
+
+    public void intputPhoneNumber(){
+        System.out.print("Nhập số dt : ");
+        String phoneNumber = "";
+        do {
+            phoneNumber=new Scanner(System.in).nextLine();
+            if (phoneNumber.matches("\\d+")) {
+                this.phone = phoneNumber;
+                break;
+            }
+            System.out.println("Số điện thoại chỉ nhập số");
+        } while (true);
     }
 
     @Override
     public String toString() {
-        return "Person {" +
-                " name = '" + name + '\'' +
-                ", address = '" + address + '\'' +
-                ", phonenumber = '" + phonenumber + '\'' +
-                '}';
+        return "Person{" + "fullName='" + fullName + '\'' + ", address='" + address + '\'' + ", phone='" + phone + '\'' + '}';
     }
+
 }
